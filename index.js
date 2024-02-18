@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // เส้นทางสำหรับ API ตัวอย่าง
-app.get('/api/data', (req, res) => {
+app.get('/', (req, res) => {
   // ส่งข้อมูล JSON กลับไปยังผู้ใช้
   res.json({ message: 'This is sample data from the API' });
 });
