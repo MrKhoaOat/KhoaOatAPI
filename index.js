@@ -1,18 +1,20 @@
-// Import Express.js
 const express = require('express');
+const fs = require('fs');
+const csv = require('csv-parser');
 
-// สร้าง instance ของ Express
 const app = express();
-
-// กำหนดพอร์ตที่ API จะรัน
 const PORT = 3000;
 
-// กำหนด route สำหรับ API
-app.get('/api/greeting', (req, res) => {
-  res.json({ message: 'สวัสดีจาก API!' });
+app.get('/api/data', (req, res) => {
+  const results = [];
+  fs.createReadStream('movies.csv')
+    .pipe(csv())
+    .on('data', (data) => results.push(data))
+    .on('end', () => {
+      res.json(results);
+    });
 });
 
-// เริ่มรับคำขอ
 app.listen(PORT, () => {
   console.log(`เซิร์ฟเวอร์ API กำลังรันที่พอร์ต ${PORT}`);
 });
