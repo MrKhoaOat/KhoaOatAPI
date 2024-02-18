@@ -1,18 +1,16 @@
-// Import Express.js
+// index.js
+
 const express = require('express');
-
-// สร้าง instance ของ Express
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// กำหนดพอร์ตที่ API จะรัน
-const PORT = 3000;
-
-// กำหนด route สำหรับ API
-app.get('/api/greeting', (req, res) => {
-  res.json({ message: 'สวัสดีจาก API!' });
+// เส้นทางสำหรับ API ตัวอย่าง
+app.get('/api/data', (req, res) => {
+  // ส่งข้อมูล JSON กลับไปยังผู้ใช้
+  res.json({ message: 'This is sample data from the API' });
 });
 
-// เริ่มรับคำขอ
+// เปิดพอร์ตและเริ่มต้นเซิร์ฟเวอร์
 app.listen(PORT, () => {
-  console.log(`เซิร์ฟเวอร์ API กำลังรันที่พอร์ต ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
